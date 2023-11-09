@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
     private void StateHandler()
     {
         // Mode - Crouching && Crouching/Fatigue
-        if (Input.GetKey(crouchKey) && staminaCooldown < 0)
+        if (Input.GetKey(crouchKey) && staminaCooldown <= 0)
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Mode - Walking && Walking/Fatigue
-        else if (grounded && staminaCooldown < 0)
+        else if (grounded && staminaCooldown <= 0)
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
