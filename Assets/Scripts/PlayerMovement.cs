@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     public float groundDrag;
 
+    [SerializeField] private float stamina;
+    [SerializeField] private float maxStamina;
+    [SerializeField] private int multiplierStamina;
+    [SerializeField] private float staminaCooldown;
+    [SerializeField] private float staminaMaxCooldown;
+
     [Header("Crouching")]
     public float crouchSpeed;
     public float crouchYScale;
@@ -52,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        stamina = maxStamina;
+        staminaCooldown = 0;
 
         startYScale = transform.localScale.y;
     }
@@ -70,6 +78,45 @@ public class PlayerMovement : MonoBehaviour
             _rb.drag = groundDrag;
         else
             _rb.drag = 0;
+
+        //stamina
+        if(state == MovementState.sprinting)
+        {
+            DecreaseStamina();
+        }
+        else if(state != MovementState.sprinting)
+        {
+            IncreaseStamina();
+        }
+
+    }
+
+    private void DecreaseStamina()
+    {
+        if(stamina != 0)
+        {
+            stamina -= multiplierStamina * Time.deltaTime;
+        }
+        if(stamina <= 5)
+        {
+            staminaCooldown = staminaMaxCooldown;
+        }
+    }
+
+    private void IncreaseStamina()
+    {
+        if (staminaCooldown > 0)
+        {
+            staminaCooldown -= 0.5f * Time.deltaTime;
+        }
+        if (stamina < maxStamina)
+        {
+            stamina += (multiplierStamina / 2) * Time.deltaTime;
+        }
+        else if(stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
     }
 
     private void FixedUpdate()
@@ -98,25 +145,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        // Mode - Crouching
-        if (Input.GetKey(crouchKey))
+        // Mode - Crouching && Crouching/Fatigue
+        if (Input.GetKey(crouchKey) && staminaCooldown < 0)
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
         }
 
+        if (Input.GetKey(crouchKey) && staminaCooldown > 0)
+        {
+            state = MovementState.crouching;
+            moveSpeed = crouchSpeed / 2;
+        }
+
         // Mode - Sprinting
-        else if(grounded && Input.GetKey(sprintKey) && moveDirection != new Vector3(0,0,0))
+        else if(grounded && Input.GetKey(sprintKey) && state != MovementState.crouching && moveDirection != new Vector3(0,0,0) && staminaCooldown <= 0)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
         }
 
-        // Mode - Walking
-        else if (grounded)
+        // Mode - Walking && Walking/Fatigue
+        else if (grounded && staminaCooldown < 0)
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
+        }
+
+        else if(grounded && staminaCooldown > 0)
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed / 2;
         }
     }
 

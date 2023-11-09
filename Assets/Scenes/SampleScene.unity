@@ -836,7 +836,7 @@ MonoBehaviour:
   buttonImage: {fileID: 1561343022}
   inRange: 0
   _GameplayManager: {fileID: 1391888618}
-  hiddenCamera: {fileID: 0}
+  hiddenCamera: {fileID: 1689242519}
   playerInside: 0
 --- !u!65 &567786821
 BoxCollider:
@@ -1628,6 +1628,11 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeed: 20
   groundDrag: 2
+  stamina: 100
+  maxStamina: 100
+  multiplierStamina: 30
+  staminaCooldown: 0
+  staminaMaxCooldown: 3
   crouchSpeed: 1.25
   crouchYScale: 0.83
   sprintKey: 304
