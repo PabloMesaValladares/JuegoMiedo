@@ -1,0 +1,8 @@
+- El enemigo te persigue, si te pierde de vista va hasta la ultima
+ubicacion donde te ha visto y cambia de fase
+- en la siguente fase detecta si hay algun escondite cerca,
+en caso negativo se va, en caso positivo, busca en alguno de los escondites
+que haga detectado y cambia de fase
+- en esta fase busca en el escondite, si no esta el jugador dentro, se va
+si este esta dentro, habra un minijuego, si gana player se va el monstuo
+si pierde, monstruo hara jumpscare y fin de juego.
