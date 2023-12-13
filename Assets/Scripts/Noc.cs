@@ -6,34 +6,41 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SocialPlatforms;
 
-public class Enemy : MonoBehaviour
+public class Noc : MonoBehaviour
 {
-    public NavMeshAgent enemy; //agent
-    public Transform player;
-    public FieldViewEnemies sensor;
-    public GameObject _player;
+    [SerializeField] private NavMeshAgent enemy; //agent
+    [SerializeField] private FieldViewEnemies sensor;
+    [SerializeField] private GameObject _player;
 
-    public LayerMask isGrounded, isPlayer;
-
+    public LayerMask isGrounded;
     public Vector3 walkPoint;
     public bool walkPointSet;
     public float walkPointRange;
 
-    public float shoutTimer;
-    public bool hasCried;
+    [SerializeField] private int monsterPhase;
+    [SerializeField] private bool playerIsHidden;
+    [SerializeField] private float shoutTimer;
+    [SerializeField] private float shoutTimerSaved;
+    [SerializeField] private float savedSpeed;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private bool hasCried;
+
     public bool playerSpotted;
     public bool asumadre;
-    [SerializeField] private float savedSpeed;
+
     public List<GameObject> Hides = new List<GameObject>();
     public Vector3 hideMoreNear;
 
     // Start is called before the first frame update
     void Awake()
     {
+        enemy = GetComponent<NavMeshAgent>();
+        sensor = GetComponentInChildren<FieldViewEnemies>();
+        _player = GameObject.FindGameObjectWithTag("Player");
+        shoutTimerSaved = shoutTimer;
+
         playerSpotted = false;
         SearchWalkPoint();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        enemy = GetComponent<NavMeshAgent>();
         savedSpeed = enemy.speed;
     }
 
@@ -45,6 +52,46 @@ public class Enemy : MonoBehaviour
 
     public void CheckThings()
     {
+        if (monsterPhase == 0) 
+        {
+            Vector3 distanceToPlayer = transform.position - _player.transform.position;
+
+            if (sensor.IsInSight(_player) == true)
+            {
+                monsterPhase = 1;
+                Debug.Log("Acabo de ver al jugador asique cambio a Fase: 1");
+            }
+            if (distanceToPlayer.magnitude < 15f && playerIsHidden == true)
+            {
+                monsterPhase = 2;
+                Debug.Log("He llegado al ultimo spot del Jugador y no lo veo, asique cambio a Fase: 2");
+            }
+
+            Patroling();
+            Debug.Log("Estoy en Fase: 0 y estoy siguendo la ultima posicion del Jugador");
+        }
+
+        else if(monsterPhase == 1) 
+        {
+            if (hasCried == false)
+            {
+                Shouting();
+                Debug.Log("Estoy en Fase: 1 y estoy gritando");
+            }
+            else if (hasCried == true)
+            {
+                Attacking();
+                Debug.Log("Estoy en Fase: 1 y ya he gritado, voy a por el jugador");
+            }
+        }
+
+        //Pausado, Neccesito acabar la mecanica del escondite primero.
+        else if(monsterPhase == 2) 
+        {
+            SearchInHides();
+        }
+
+        
         if (sensor.Objects.Count == 0 && playerSpotted == false)
         {
             Patroling();
@@ -115,24 +162,30 @@ public class Enemy : MonoBehaviour
         float randomizerX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
         float randomizerZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(player.transform.position.x + randomizerX, transform.position.y, player.transform.position.z + randomizerZ);
+        walkPoint = new Vector3(_player.transform.position.x + randomizerX, transform.position.y, _player.transform.position.z + randomizerZ);
 
         if(Physics.Raycast(walkPoint, -transform.up, 2f, isGrounded)) walkPointSet = true;  
     }
 
     private void Shouting()
     {
+        enemy.speed = 0;
+        walkPointSet = false;
+        walkPoint = new Vector3(0, 0, 0);
+
         shoutTimer -= 1 * Time.deltaTime;
 
         if (shoutTimer <= 0)
         {
-            shoutTimer = 0;
+            shoutTimer = shoutTimerSaved;
+            enemy.speed = attackSpeed;
             hasCried = true;
         }
     }
 
     private void SearchInHides()
     {
+        enemy.speed = savedSpeed;
         Vector3 nearHide = new Vector3(0, 0, 0);
         hideMoreNear = Hides[0].gameObject.transform.position;
 
@@ -152,7 +205,7 @@ public class Enemy : MonoBehaviour
 
         if (hideMoreNear.magnitude <= 0.5f)
         {
-            Debug.Log("Busca en el escondite");
+            Debug.Log("Estoy revisando el escondite");
             gameObject.SetActive(false);
             //Siguente Fase
         }
@@ -160,27 +213,30 @@ public class Enemy : MonoBehaviour
 
     private void Attacking()
     {
-        enemy.SetDestination(player.position);
+        enemy.SetDestination(_player.transform.position);
 
-        transform.LookAt(player);
+        transform.LookAt(_player.transform);
 
-        Vector3 distanceToReseachPlayer = transform.position - player.position;
+        Vector3 distanceToReseachPlayer = transform.position - _player.transform.position;
 
-        if(distanceToReseachPlayer.magnitude <= 2.5f) 
+        if(distanceToReseachPlayer.magnitude <= 1.5f && playerIsHidden == false) 
         {
+            Debug.Log("Consegui matar al jugador, hihihi");
             Jumpscare();
         }
+        else if(distanceToReseachPlayer.magnitude <= 1.5f && playerIsHidden == true)
+        {
+            Debug.Log("El cbr del jugador se escondio, voy a revisar el escondite mas cercano");
+            monsterPhase = 2;
+        }
+
     }
 
     private void SearchForPlayer() 
     {
-        enemy.SetDestination(player.position);
-
-        Vector3 distanceToReseachPlayer = transform.position - player.position;
-
-        if (distanceToReseachPlayer.magnitude < 1.5f)
+        if(playerIsHidden == false)
         {
-            
+
         }
     }
 
