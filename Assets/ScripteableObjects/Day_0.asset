@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b13a05bd5d19a4ebe3a5e934d2f703, type: 3}
+  m_Name: Day_0
+  m_EditorClassIdentifier: 
+  day: 3
+  prideCooldown: 60
+  GluttonyDelay: 0
+  GluttonyUmbral: 0
+  GluttonyUmbral1: 0
+  GluttonyUmbral2: 0
+  greedCanSpawn: 0

@@ -4,62 +4,31 @@ using UnityEngine;
 
 public class Closet : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonImage;
-    [SerializeField] private bool inRange;
     [SerializeField] private GameObject _GameplayManager;
     [SerializeField] private GameObject hiddenCamera;
     [SerializeField] private bool playerInside;
+    [SerializeField] HiddenMinigame _hiddenMinigame;
 
-    /*
-    public void Interact()
+    public void HiddenInCloset()
     {
-        Debug.Log(Random.Range(50, 100));
-    }
-    */
-    // Start is called before the first frame update
-    void Start()
-    {
-        inRange = false;
-        playerInside = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Hand")
+        if (!playerInside && _GameplayManager.GetComponent<GameplayManager>().PlayerCantHiddenConfirmation() == false)
         {
-            inRange = true;
-            buttonImage.SetActive(true);
+            playerInside = true;
+            _GameplayManager.GetComponent<GameplayManager>().PlayerHidden();
+            hiddenCamera.SetActive(true);
+        }
+        else if (playerInside && _hiddenMinigame.startMinigame == false)
+        {
+            Debug.Log("intento salir");
+            playerInside = false;
+            _GameplayManager.GetComponent<GameplayManager>().PlayerHidden();
+            hiddenCamera.SetActive(false);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public bool playerIsInside()
     {
-        if(other.gameObject.tag == "Hand")
-        {
-            inRange = false; 
-            buttonImage.SetActive(false);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (inRange && Input.GetKeyDown(KeyCode.E)) 
-        {
-            if (!playerInside) 
-            {
-                playerInside = true;
-                _GameplayManager.GetComponent<GameplayManager>().PlayerHidden();
-                hiddenCamera.SetActive(true);
-            }
-            else if(playerInside)
-            {
-                playerInside = false;
-                _GameplayManager.GetComponent<GameplayManager>().PlayerHidden();
-                hiddenCamera.SetActive(false);
-            }
-
-            //Debug.Log(Random.Range(50, 100));
-        }
+        return playerInside;
     }
 }
+

@@ -6,3 +6,33 @@ que haga detectado y cambia de fase
 - en esta fase busca en el escondite, si no esta el jugador dentro, se va
 si este esta dentro, habra un minijuego, si gana player se va el monstuo
 si pierde, monstruo hara jumpscare y fin de juego.
+
+
+
+
+Nuevas Cosas a añadir:
+
+- Blockout y probar antiguas cosas
+- Nuevos Enemigos
+- Nuevos Objetos utilizables
+- Nuevos Escondites
+- Sistema de hora/Dias
+- El Gato "MIAU MIAU" esta reposado en la ventana de la habitacion
+de la niña para que tal cual spaunea el jugador pueda interactuar con "Miau Miau"
+para que le de pistas del nuevo enemigo de esa noche aprovenchando los primeros
+segundos de margen de estas.
+
+- Nombres Niña:
+- Lilith
+
+ - "El Pasillo" enemigo que aparece en los pasillos cuando ningun otro enemigo este activado
+
+ Altura de los pasillos: 3M
+ Altura habitacion: 4M
+
+ - Terminar de hacer el enemigo de debajo la cama, falta acabar su evento cuando
+ aparece y que interactue con la linterna, falta animacion de muerte y acabar
+ de hacer bien el GameOver y los menus.
+
+
+ El enemigo cama y el enemigo caja de musica son diferentes.

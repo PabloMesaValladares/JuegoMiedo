@@ -10,12 +10,14 @@ public class HiddenMinigame : MonoBehaviour
 
     [SerializeField] private float timer;
     [SerializeField] private float timerSaved;
-    [SerializeField] private bool startMinigame;
+    [SerializeField] public bool startMinigame;
     [SerializeField] private bool pulseA, pulseD;
     [SerializeField] private bool thereIsAPulseA, thereIsAPulseD;
-    public float keyAAmount, keyDAmount;
+    [SerializeField] public float keyAAmount, keyDAmount;
     [SerializeField] private float keyAAmountS, keyDAmountS, randomizerA, randomizerD;
     [SerializeField] private int minRange, maxRange;
+
+    [SerializeField] private GameplayManager _GameplayManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,7 @@ public class HiddenMinigame : MonoBehaviour
                 timer = timerSaved;
                 startMinigame = false;
                 _MinigameUI.SetActive(false);
+                _GameplayManager.GetComponent<GameplayManager>().PrideIsOut();
             }
         }
     }
@@ -71,24 +74,25 @@ public class HiddenMinigame : MonoBehaviour
         if (!thereIsAPulseA)
         {
             thereIsAPulseA = true;
-            randomizerA = UnityEngine.Random.Range(minRange, maxRange);
+            randomizerA = Random.Range(minRange, maxRange);
         }
 
         if (!thereIsAPulseD)
         {
             thereIsAPulseD = true;
-            randomizerD = UnityEngine.Random.Range(minRange, maxRange);
+            randomizerD = Random.Range(minRange, maxRange);
         }
 
-        else if(thereIsAPulseA) //Tecla A
+        if(thereIsAPulseA) //Tecla A
         {
-            keyAAmount -= randomizerA * 2 * Time.deltaTime;
+            keyAAmount -= randomizerA * 10 * Time.deltaTime;
 
-            if (keyAAmount <= 0 || (!pulseA && Input.GetKeyDown(KeyCode.Space)))
+            if (keyAAmount <= 1.5f || (!pulseA && Input.GetKeyDown(KeyCode.A)))
             {
                 keyAAmount = keyAAmountS;
                 thereIsAPulseA = false;
                 pulseA = false;
+                _GameplayManager.GameOver();
                 //El jugador pierde y muere
             }
             if(keyAAmount <= 50)
@@ -104,15 +108,16 @@ public class HiddenMinigame : MonoBehaviour
             }          
         }
 
-        else if (thereIsAPulseD) //Tecla D
+        if (thereIsAPulseD) //Tecla D
         {
-            keyDAmount -= randomizerD * 2 * Time.deltaTime;
+            keyDAmount -= randomizerD * 10 * Time.deltaTime;
 
-            if (keyDAmount <= 0 || (!pulseD && Input.GetKeyDown(KeyCode.Space)))
+            if (keyDAmount <= 1.5f || (!pulseD && Input.GetKeyDown(KeyCode.D)))
             {
                 keyDAmount = keyDAmountS;
                 thereIsAPulseD = false;
                 pulseD = false;
+                _GameplayManager.GameOver();
                 //El jugador pierde y muere
             }
             if (keyDAmount <= 50)
