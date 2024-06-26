@@ -2010,7 +2010,7 @@ MonoBehaviour:
   umbralCheck2: 0
   timerOn: 15
   delay: 10
-  umbral: 8
+  umbral: 7
   umbral1: 5
   umbral2: 3
 --- !u!64 &510474932
