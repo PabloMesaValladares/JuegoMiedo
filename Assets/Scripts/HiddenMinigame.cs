@@ -18,6 +18,7 @@ public class HiddenMinigame : MonoBehaviour
     [SerializeField] private int minRange, maxRange;
 
     [SerializeField] private GameplayManager _GameplayManager;
+    [SerializeField] private GameObject _Pride;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +48,8 @@ public class HiddenMinigame : MonoBehaviour
                 timer = timerSaved;
                 startMinigame = false;
                 _MinigameUI.SetActive(false);
-                _GameplayManager.GetComponent<GameplayManager>().PrideIsOut();
+                //_GameplayManager.GetComponent<GameplayManager>().PrideIsOut();
+                _Pride.GetComponent<Pride>().PlayerCompletedTheMiniGame();
             }
         }
     }

@@ -111,7 +111,7 @@ public class Pride : MonoBehaviour
 
         else if(monsterPhase == 3) //Fase de Despawnear
         {
-            _GameplayManager.GetComponent<GameplayManager>().PrideIsOut();
+            _GameplayManager.GetComponent<GameplayManager>().PrideIsLeaving();
 
             if (sensor.Objects.Count >= 1)
             {
@@ -297,13 +297,14 @@ public class Pride : MonoBehaviour
     {
         enemy.SetDestination(position);
 
-        transform.LookAt(position);
+        //transform.LookAt(position);
 
         Vector3 distanceToReseachDestination = transform.position - position;
 
         if (distanceToReseachDestination.magnitude <= 1.5f)
         {
             Debug.Log("Me fui del mapa");
+            _GameplayManager.GetComponent<GameplayManager>().PrideIsOut();
             gameObject.SetActive(false);
         }
     }
@@ -312,6 +313,11 @@ public class Pride : MonoBehaviour
     {
         Debug.Log("Susto");
         gameObject.SetActive(false);
+    }
+
+    public void PlayerCompletedTheMiniGame()
+    {
+        playerIsInMinigame = false;
     }
 
     public void Reset()

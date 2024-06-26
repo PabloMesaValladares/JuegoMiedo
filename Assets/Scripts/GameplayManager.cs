@@ -13,6 +13,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private bool lanternActivated;
     [SerializeField] private GameObject _GameOverUI;
     [SerializeField] private GameObject _OthersUI;
+    [SerializeField] private GameObject _DayManager;
 
     public UnityEvent startMinigame;
 
@@ -106,12 +107,17 @@ public class GameplayManager : MonoBehaviour
     }
 
 
-    public void PrideIsOut()
+    public void PrideIsLeaving()
     {
         int i = 0;
         prideRandomNumber = UnityEngine.Random.Range(0, prideRandomNumberMax);
 
         //Pride.gameObject.transform.position = _prideSpawns[i].gameObject.transform.position;
         Pride.GetComponent<Pride>().OutOfHere(_prideSpawns[i].gameObject.transform.position);
+    }
+
+    public void PrideIsOut()
+    {
+        _DayManager.GetComponent<DayManager>().PrideHasDespawnded();
     }
 }

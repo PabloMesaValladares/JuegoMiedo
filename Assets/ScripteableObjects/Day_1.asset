@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Day_1
   m_EditorClassIdentifier: 
   day: 4
-  prideCooldown: 30
+  prideCooldown: 6
   GluttonyDelay: 0
   GluttonyUmbral: 0
   GluttonyUmbral1: 0

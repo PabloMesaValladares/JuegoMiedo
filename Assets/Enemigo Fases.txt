@@ -25,8 +25,6 @@ segundos de margen de estas.
 - Nombres Niña:
 - Lilith
 
- - "El Pasillo" enemigo que aparece en los pasillos cuando ningun otro enemigo este activado
-
  Altura de los pasillos: 3M
  Altura habitacion: 4M
 
@@ -36,3 +34,9 @@ segundos de margen de estas.
 
 
  El enemigo cama y el enemigo caja de musica son diferentes.
+
+ - Mejorar el Minijuego del escondite
+ - Si Pride esta cerca de un escondite, no te deja interactuar con el. (añadir nuevo radio)
+
+
+
