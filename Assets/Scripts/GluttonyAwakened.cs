@@ -12,6 +12,10 @@ public class GluttonyAwakened : MonoBehaviour
     public LayerMask isGrounded;
 
     [SerializeField] private float Speed;
+    [SerializeField] private float SpeedZero;
+
+    [SerializeField] private RaycastHit _RaycastPlayer;
+    [SerializeField] private float raycastRange;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,7 +29,7 @@ public class GluttonyAwakened : MonoBehaviour
     void Update()
     {
         Attacking();
-        PlayerIsLookingMe();
+        //PlayerIsLookingMe();
     }
 
     private void Attacking()
@@ -42,11 +46,34 @@ public class GluttonyAwakened : MonoBehaviour
             Jumpscare();
         }
     }
-
+    /*
     public void PlayerIsLookingMe()
     {
-        //
+        enemy.GetComponent<NavMeshAgent>().speed = SpeedZero;
     }
+
+    public void PlayerIsDoesntLookingMe()
+    {
+        enemy.GetComponent<NavMeshAgent>().speed = Speed;
+    }
+    */
+    public void OnTriggerStay(Collider other)
+    {
+        if(_GameplayManager.GetComponent<GameplayManager>().LanternActivated() == true)
+        {
+            enemy.GetComponent<NavMeshAgent>().speed = SpeedZero;
+        }
+        else if(_GameplayManager.GetComponent<GameplayManager>().LanternActivated() == false)
+        {
+            enemy.GetComponent<NavMeshAgent>().speed = Speed;
+        }
+    }
+
+    public void OnTriggerExit(Collider other) 
+    {
+        enemy.GetComponent<NavMeshAgent>().speed = Speed;
+    }
+
     private void Jumpscare()
     {
         Debug.Log("Susto");
