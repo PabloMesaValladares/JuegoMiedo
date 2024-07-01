@@ -2601,24 +2601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e819a2c6ae68c40ae1c9c9c630875b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 568243084}
-  player: {fileID: 872736885}
-  sensor: {fileID: 1657259959}
-  _player: {fileID: 872736881}
-  isGrounded:
-    m_Bits: 8
-  isPlayer:
-    m_Bits: 64
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
-  walkPointRange: 10
-  shoutTimer: 0.25
-  hasCried: 0
-  playerSpotted: 0
-  asumadre: 0
-  savedSpeed: 0
-  Hides: []
-  hideMoreNear: {x: 0, y: 0, z: 0}
 --- !u!195 &568243084
 NavMeshAgent:
   m_ObjectHideFlags: 0
