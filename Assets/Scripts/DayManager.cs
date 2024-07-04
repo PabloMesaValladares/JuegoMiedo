@@ -21,7 +21,6 @@ public class DayManager : MonoBehaviour
 
     //Enemies bools
     public bool prideHasSpawnded;
-    //[SerializeField] GameObject _Pride;
 
     [SerializeField] private List<DaysInfo> _days;
   
@@ -30,8 +29,6 @@ public class DayManager : MonoBehaviour
     {
         enemiesGetOut = false;
 
-        //_GameManager = GetComponent<GameManager>();
-       // _GameplayManager = GetComponent<GameplayManager>();
         day = _GameManager.Day;
 
         prideCooldownSaved = _days[day].prideCooldown;
@@ -99,20 +96,4 @@ public class DayManager : MonoBehaviour
     {
         prideHasSpawnded = false;
     }
-
-
-    /*
-    public void TriggeringTheEvent()
-    {
-        triggerNumber = Random.Range(0, maxProbability);
-
-        if (triggerNumber == 1)
-        {
-            _Greed.AssingTheDoor(gameObject);
-            _Greed.SetSpawnGreed(this.gameObject.transform.position);
-            GreedGo = true;
-            //AnimationDoor();
-        }      
-    }
-    */
 }

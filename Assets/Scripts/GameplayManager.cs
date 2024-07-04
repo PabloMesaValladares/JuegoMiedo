@@ -27,6 +27,7 @@ public class GameplayManager : MonoBehaviour
     //Enemies Things
     [SerializeField] private int prideRandomNumber;
     [SerializeField] private int prideRandomNumberMax;
+    [SerializeField] private bool prideIsActive;
 
     // Start is called before the first frame update
     void Awake()
@@ -104,6 +105,7 @@ public class GameplayManager : MonoBehaviour
         Pride.GetComponent<Pride>().Reset();
         Pride.gameObject.transform.position = _prideSpawns[i].gameObject.transform.position;
         Pride.SetActive(true);
+        prideIsActive = true;
     }
 
 
@@ -114,10 +116,16 @@ public class GameplayManager : MonoBehaviour
 
         //Pride.gameObject.transform.position = _prideSpawns[i].gameObject.transform.position;
         Pride.GetComponent<Pride>().OutOfHere(_prideSpawns[i].gameObject.transform.position);
+        prideIsActive = false;
     }
 
     public void PrideIsOut()
     {
         _DayManager.GetComponent<DayManager>().PrideHasDespawnded();
+    }
+
+    public bool PrideIsActive()
+    {
+        return prideIsActive;
     }
 }

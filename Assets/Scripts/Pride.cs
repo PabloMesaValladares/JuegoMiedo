@@ -10,6 +10,7 @@ public class Pride : MonoBehaviour
     [SerializeField] private FieldViewEnemies sensor;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameplayManager _GameplayManager;
+    [SerializeField] private GameObject _targetAggro;
 
     public LayerMask isGrounded;
     public Vector3 walkPoint;
@@ -125,6 +126,16 @@ public class Pride : MonoBehaviour
             {
                 monsterPhase = 3;
             }
+        }
+
+        else if(monsterPhase == 5)
+        {
+            AggroMoment();
+
+            if (sensor.Objects.Count >= 1)
+            {
+                monsterPhase = 1;
+            }        
         }
         /*
         if (sensor.Objects.Count == 0 && playerSpotted == false)
@@ -306,6 +317,25 @@ public class Pride : MonoBehaviour
             Debug.Log("Me fui del mapa");
             _GameplayManager.GetComponent<GameplayManager>().PrideIsOut();
             gameObject.SetActive(false);
+        }
+    }
+
+    public void AgggroTarget(GameObject Target)
+    {
+        _targetAggro = Target;
+        monsterPhase = 5;
+    }
+
+    private void AggroMoment()
+    {       
+        enemy.SetDestination(_targetAggro.transform.position);
+
+        Vector3 distanceToReseachDestination = transform.position - LastPlayerPosition;
+
+        if (distanceToReseachDestination.magnitude <= 1.5f)
+        {
+            Debug.Log("No encontre a nadie asique vuelvo a patrullar.");
+            monsterPhase = 0;
         }
     }
 
