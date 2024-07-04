@@ -43,5 +43,18 @@ public class WindowController : MonoBehaviour
         isOpen = false;
         windowLight.enabled = false;
         Debug.Log("Ventana cerrada: " + gameObject.name);
+
+        // Reactiva la detección en el LightArea cuando la ventana se cierra
+        LightArea lightArea = GetComponentInChildren<LightArea>();
+        if (lightArea != null)
+        {
+            lightArea.ReactivateDetection();
+        }
+    }
+
+    // Método público para verificar si la ventana está abierta
+    public bool IsWindowOpen()
+    {
+        return isOpen;
     }
 }
