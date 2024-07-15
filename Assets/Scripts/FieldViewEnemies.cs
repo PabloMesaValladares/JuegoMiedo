@@ -183,7 +183,6 @@ public class FieldViewEnemies : MonoBehaviour
             Gizmos.DrawSphere(colliders[i].transform.position, 1f);
         }
 
-
         Gizmos.color = Color.green;
         foreach(var obj in Objects)
         {

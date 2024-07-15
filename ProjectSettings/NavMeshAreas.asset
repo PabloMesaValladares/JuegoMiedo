@@ -14,7 +14,7 @@ NavMeshProjectSettings:
   - name: Floor
     cost: 1
   - name: Wall
-    cost: 1
+    cost: 2
   - name: Roof
     cost: 1
   - name: 
