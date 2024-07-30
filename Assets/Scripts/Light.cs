@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LightArea : MonoBehaviour
 {
+    public UnityEvent OnPlayerEnter;
     private WindowController windowController;
     private bool canDetectPlayer = true; // Variable para controlar la detección
 
@@ -16,6 +18,7 @@ public class LightArea : MonoBehaviour
         // Comprueba si la ventana está abierta y la detección está activa
         if (other.CompareTag("Player") && windowController != null && windowController.IsWindowOpen() && canDetectPlayer)
         {
+            OnPlayerEnter.Invoke();
             Debug.Log("El jugador ha entrado en el área de luz de " + transform.parent.name);
             canDetectPlayer = false; // Desactiva la detección hasta que la ventana se cierre y vuelva a abrirse
         }

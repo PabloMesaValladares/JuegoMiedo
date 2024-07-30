@@ -10,7 +10,7 @@ public class Pride : MonoBehaviour
     [SerializeField] private FieldViewEnemies sensor;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameplayManager _GameplayManager;
-    [SerializeField] private GameObject _targetAggro;
+    [SerializeField] private Vector3 _targetAggro;
 
     public LayerMask isGrounded;
     public Vector3 walkPoint;
@@ -320,17 +320,18 @@ public class Pride : MonoBehaviour
         }
     }
 
-    public void AgggroTarget(GameObject Target)
+public void AgggroTarget()
     {
-        _targetAggro = Target;
+        LastPlayerPosition = _player.transform.position;
+        _targetAggro = LastPlayerPosition;
         monsterPhase = 5;
     }
 
     private void AggroMoment()
     {       
-        enemy.SetDestination(_targetAggro.transform.position);
+        enemy.SetDestination(_targetAggro);
 
-        Vector3 distanceToReseachDestination = transform.position - _targetAggro.transform.position;
+        Vector3 distanceToReseachDestination = transform.position - _targetAggro;
 
         if (distanceToReseachDestination.magnitude <= 1.5f)
         {
