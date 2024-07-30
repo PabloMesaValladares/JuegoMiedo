@@ -31,7 +31,9 @@ public class Spider : MonoBehaviour
         enemy = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
         enemy.GetComponent<NavMeshAgent>().speed = Speed;
-        IsStealthing = false;
+        IsStealthing = true;
+        IsLooking = false;
+        IsJumping = false;
 
         StealthTimer = StealthTimerSaved;
     }
