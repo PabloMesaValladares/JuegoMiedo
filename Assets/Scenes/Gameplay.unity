@@ -5057,7 +5057,7 @@ MonoBehaviour:
   sensor: {fileID: 0}
   _player: {fileID: 0}
   _GameplayManager: {fileID: 1391888620}
-  _targetAggro: {fileID: 0}
+  _targetAggro: {x: 0, y: 0, z: 0}
   isGrounded:
     serializedVersion: 2
     m_Bits: 8
@@ -6294,7 +6294,7 @@ MonoBehaviour:
   sensor: {fileID: 0}
   _player: {fileID: 0}
   _GameplayManager: {fileID: 1391888620}
-  _targetAggro: {fileID: 0}
+  _targetAggro: {x: 0, y: 0, z: 0}
   isGrounded:
     serializedVersion: 2
     m_Bits: 8
@@ -9881,14 +9881,15 @@ MonoBehaviour:
   enemy: {fileID: 0}
   _player: {fileID: 0}
   _GameplayManager: {fileID: 1391888620}
+  _targetAggro: {fileID: 0}
   _Points:
   - {fileID: 1890388075}
   - {fileID: 1038700702}
   - {fileID: 333938761}
   Speed: 2
   IsStealthing: 0
-  IsPatroling: 0
   IsJumping: 0
+  IsLooking: 0
   StealthTimer: 0
   StealthTimerSaved: 3
   triggerNumber: 0
@@ -13332,6 +13333,126 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 567384380392157597, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 567384380392157597, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 567384380392157597, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 567384380392157597, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 567384380392157597, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 567384380392157597, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087659824759236103, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087659824759236103, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 2087659824759236103, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087659824759236103, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087659824759236103, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087659824759236103, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674116268271721887, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674116268271721887, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 2674116268271721887, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674116268271721887, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674116268271721887, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674116268271721887, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884709455692082761, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884709455692082761, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 2884709455692082761, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884709455692082761, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884709455692082761, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884709455692082761, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3366906085627866111, guid: 04480aff40050164faa121a27e968990,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13382,10 +13503,200 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4477165566148895496, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477165566148895496, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 4477165566148895496, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477165566148895496, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477165566148895496, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477165566148895496, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182091958776467882, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182091958776467882, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 5182091958776467882, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182091958776467882, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182091958776467882, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182091958776467882, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714110379808631222, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758481251574338131, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758481251574338131, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 5758481251574338131, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758481251574338131, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758481251574338131, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758481251574338131, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6624883820377605000, guid: 04480aff40050164faa121a27e968990,
         type: 3}
       propertyPath: m_Name
       value: bicho ventana
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791638280791707627, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791638280791707627, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 7791638280791707627, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791638280791707627, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791638280791707627, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791638280791707627, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768143188587510270, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768143188587510270, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1189956675}
+    - target: {fileID: 8768143188587510270, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgggroTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768143188587510270, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pride, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768143188587510270, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768143188587510270, guid: 04480aff40050164faa121a27e968990,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

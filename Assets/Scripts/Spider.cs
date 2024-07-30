@@ -66,7 +66,7 @@ public class Spider : MonoBehaviour
             NumberSelected = true;
         }
 
-        enemy.SetDestination(new Vector3(_Points[triggerNumber].transform.position.x, _Points[triggerNumber].transform.position.z));
+        enemy.SetDestination(_Points[triggerNumber].transform.position);
 
         Vector3 distanceToReseachThatPoint = transform.position - _Points[triggerNumber].transform.position;
 
