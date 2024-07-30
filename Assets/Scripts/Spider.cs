@@ -10,20 +10,19 @@ public class Spider : MonoBehaviour
     [SerializeField] private NavMeshAgent enemy; //agent
     [SerializeField] private GameObject _player;
     [SerializeField] private GameplayManager _GameplayManager;
-    [SerializeField] private FieldViewEnemies sensor;
+    [SerializeField] private GameObject _targetAggro;
 
-    public LayerMask isGrounded;
-    public Vector3 walkPoint;
-    public bool walkPointSet;
-    public float walkPointRange;
+    [SerializeField] private List<GameObject> _Points;
 
     [SerializeField] private float Speed;
     [SerializeField] private bool IsStealthing;
-    [SerializeField] private bool IsAttacking;
-    [SerializeField] private bool IsPatroling;
+    [SerializeField] private bool IsJumping;
+    [SerializeField] private bool IsLooking;
 
     [SerializeField] public float StealthTimer;
     [SerializeField] public float StealthTimerSaved;
+    [SerializeField] private int triggerNumber;
+    [SerializeField] private bool NumberSelected;
 
 
     // Start is called before the first frame update
@@ -31,10 +30,8 @@ public class Spider : MonoBehaviour
     {
         enemy = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
-        sensor = GetComponentInChildren<FieldViewEnemies>();
         enemy.GetComponent<NavMeshAgent>().speed = Speed;
         IsStealthing = false;
-        IsAttacking = false;
 
         StealthTimer = StealthTimerSaved;
     }
@@ -42,52 +39,41 @@ public class Spider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsAttacking == false && IsStealthing == false)
+        if(IsLooking == false)
         {
-            Patrol();
+            if (IsStealthing == false && IsJumping == false)
+            {
+                Patrol();
+            }
+            else if (IsStealthing == true && IsJumping == false)
+            {
+                Stealth();
+            }
         }
-        else if(IsAttacking == false && IsStealthing == true)
+        else if(IsLooking == false) 
         {
-            Stealth();
-        }
-        else if(IsAttacking == true && IsStealthing == false)
-        {
-            Attacking();
-        }
-
-        if (sensor.Objects.Count >= 1)
-        {
-            IsAttacking = true;
-            IsStealthing = false;
+            AggroMoment();
         }
     }
 
-    private void Attacking()
-    {
-        enemy.SetDestination(_player.transform.position);
-
-        transform.LookAt(_player.transform);
-
-        Vector3 distanceToReseachPlayer = transform.position - _player.transform.position;
-
-        if (distanceToReseachPlayer.magnitude <= 1.5f)
-        {
-            Debug.Log("Consegui matar al jugador, hihihi");
-            Jumpscare();
-        }
-    }
     private void Patrol()
     {
-        if (!walkPointSet) SearchWalkPoint();
-        if (walkPointSet) enemy.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkToThatPoint = transform.position - walkPoint;
-
-        if (distanceToWalkToThatPoint.magnitude < 1f && sensor.Objects.Count >= 0)
+        if(NumberSelected == false)
         {
-            walkPointSet = false;
+            triggerNumber = Random.Range(0, _Points.Count);
+            NumberSelected = true;
+        }
+
+        enemy.SetDestination(new Vector3(_Points[triggerNumber].transform.position.x, _Points[triggerNumber].transform.position.z));
+
+        Vector3 distanceToReseachThatPoint = transform.position - _Points[triggerNumber].transform.position;
+
+        if (distanceToReseachThatPoint.magnitude <= 1f)
+        {
+            NumberSelected = false;
             IsStealthing = true;
         }
+
     }
 
     private void Stealth()
@@ -98,51 +84,55 @@ public class Spider : MonoBehaviour
         {
             StealthTimer = StealthTimerSaved;
             IsStealthing = false;
-        }
-
-        Vector3 distanceToReseachPlayer = transform.position - _player.transform.position;
-
-        if (distanceToReseachPlayer.magnitude <= 1.5f)
-        {
-            Debug.Log("Consegui matar al jugador, hihihi");
-            Jumpscare();
+            NumberSelected = false;
         }
     }
 
-    private void SearchWalkPoint()
-    {
-        float randomizerX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-        float randomizerZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(_player.transform.position.x + randomizerX, transform.position.y, _player.transform.position.z + randomizerZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, isGrounded)) walkPointSet = true;
-    }
-
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Player" && IsStealthing == false)
-        {
-            Attacking();
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Stealth();
+            IsLooking = false;
+            IsStealthing = false;
+            IsJumping = true;
+
+            Jumpscare();
         }
     }
 
     private void Jumpscare()
     {
+        enemy.GetComponent<NavMeshAgent>().speed = 0;
         Debug.Log("Susto");
+        _GameplayManager.GameOver();
         gameObject.SetActive(false);
     }
 
     public void Reset()
     {
+        enemy.GetComponent<NavMeshAgent>().speed = Speed;
+        IsStealthing = false;
+        IsJumping = false;
 
+        StealthTimer = StealthTimerSaved;
+    }
+
+     public void AgggroTarget(GameObject Target)
+     {
+        _targetAggro = Target;
+        IsLooking = true;
+     }
+
+    private void AggroMoment()
+    {
+        enemy.SetDestination(_targetAggro.transform.position);
+
+        Vector3 distanceToReseachDestination = transform.position - _targetAggro.transform.position;
+
+        if (distanceToReseachDestination.magnitude <= 1.5f)
+        {
+            IsLooking = false;
+            Debug.Log("No encontre a nadie asique vuelvo a patrullar.");
+        }
     }
 }

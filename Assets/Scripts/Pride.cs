@@ -330,7 +330,7 @@ public class Pride : MonoBehaviour
     {       
         enemy.SetDestination(_targetAggro.transform.position);
 
-        Vector3 distanceToReseachDestination = transform.position - LastPlayerPosition;
+        Vector3 distanceToReseachDestination = transform.position - _targetAggro.transform.position;
 
         if (distanceToReseachDestination.magnitude <= 1.5f)
         {
