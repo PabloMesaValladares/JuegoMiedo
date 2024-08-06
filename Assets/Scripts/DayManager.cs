@@ -31,6 +31,26 @@ public class DayManager : MonoBehaviour
 
     public void DaysManagament()
     {
+        if (day == 0)
+        {
+            prideCanSpawn = true;
+            gluttonyCanSpawn = true;
+            greedCanSpawn = false;
+            jackCanSpawn = false;
+            weaverCanSpawn = false;
+            windowCanSpawn = false;
+        }
+        else if (day == 1)
+        {
+            prideCanSpawn = true;
+            gluttonyCanSpawn = true;
+            greedCanSpawn = true;
+            jackCanSpawn = true;
+            weaverCanSpawn = true;
+            windowCanSpawn = true;
+        }
+    
+        /*
         if(day >= 0 && day <= 6 && day != 7) //Primeros dias
         {
             
@@ -55,5 +75,6 @@ public class DayManager : MonoBehaviour
         {
 
         }
+        */
     }
 }

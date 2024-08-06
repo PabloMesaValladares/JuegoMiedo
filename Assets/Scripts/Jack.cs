@@ -6,14 +6,21 @@ public class Jack : MonoBehaviour
 {
     [SerializeField] private GameObject _GameplayManager;
 
-    private float timerDeath;
-    private float timerDeathSaved;
+    [SerializeField] private float timerDeath;
+    [SerializeField] private float timerDeathSaved;
+    private Coroutine increaseTimerCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
         timerDeathSaved = _GameplayManager.GetComponent<GameplayManager>().jackCooldown;
         timerDeath = timerDeathSaved;
+
+        if (increaseTimerCoroutine != null)
+        {
+            StopCoroutine(increaseTimerCoroutine);
+            increaseTimerCoroutine = null;
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -34,8 +41,18 @@ public class Jack : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //PROCESO DE SEGUNDO PLANO PARA RECUPERAR LOS SEGUNDOS
+            increaseTimerCoroutine = StartCoroutine(IncreaseTimer());
         }
+    }
+
+    private IEnumerator IncreaseTimer()
+    {
+        while (timerDeath < timerDeathSaved)
+        {
+            timerDeath += 1 * Time.deltaTime;
+            yield return null;
+        }
+        timerDeath = timerDeathSaved;
     }
 
     public void Death()

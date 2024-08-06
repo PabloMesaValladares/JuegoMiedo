@@ -34,10 +34,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private bool WindowsPlay = false;
 
     //Enemies Cooldowns
-    [SerializeField] private float prideCooldown;
-    [SerializeField] private float prideCooldownSaved;
-    [SerializeField] private float gluttonyCooldown;
-    [SerializeField] private int gluttonyRoar, gluttonyRoar1, gluttonyRoar2;
+    [SerializeField] public float prideCooldown;
+    [SerializeField] public float prideCooldownSaved;
+    [SerializeField] public float gluttonyCooldown;
+    [SerializeField] public int gluttonyRoar, gluttonyRoar1, gluttonyRoar2;
     [SerializeField] public float jackCooldown;
     [SerializeField] public float twinWeaversCooldown;
 
@@ -164,7 +164,7 @@ public class GameplayManager : MonoBehaviour
     //Pride
     public void SpawningPride()
     {
-        if (!prideHasSpawnded)
+        if (!prideHasSpawnded && PridePlay == true)
         {
             prideCooldown -= 1 * Time.deltaTime;
 

@@ -6,6 +6,7 @@ public class Gluttony : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _AwakenGluttony;
+    [SerializeField] private GameObject _GameplayManager;
     private InventorySystem _Inventory;
 
     [SerializeField] private bool umbralCheck, umbralCheck1, umbralCheck2;
@@ -16,9 +17,16 @@ public class Gluttony : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Reset();
+        _GameplayManager = GameObject.FindGameObjectWithTag("GameplayManager");
         _player = GameObject.FindGameObjectWithTag("Player");
         _Inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
+
+        delay = _GameplayManager.GetComponent<GameplayManager>().gluttonyCooldown;
+        umbral = _GameplayManager.GetComponent<GameplayManager>().gluttonyRoar;
+        umbral1 = _GameplayManager.GetComponent<GameplayManager>().gluttonyRoar1;
+        umbral2 = _GameplayManager.GetComponent<GameplayManager>().gluttonyRoar2;
+
+        Reset();
     }
 
     // Update is called once per frame

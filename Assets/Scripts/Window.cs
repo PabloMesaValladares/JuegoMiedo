@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class WindowController : MonoBehaviour
 {
@@ -15,13 +16,13 @@ public class WindowController : MonoBehaviour
     void Start()
     {
         windowLight.enabled = false;
+        _GameplayManager = GameObject.FindGameObjectWithTag("GameplayManager");
         probabilityToOpen = _GameplayManager.GetComponent<GameplayManager>().WindowsProbability;
         openDuration = _GameplayManager.GetComponent<GameplayManager>().WindowsCooldown;
     }
 
     void Update()
     {
-
         if (!isOpen && triggerNumber == 1)
         {
           OpenWindow();
