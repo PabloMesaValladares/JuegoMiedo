@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 
-public class Spider : MonoBehaviour
+public class Weaver : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent enemy; //agent
     [SerializeField] private GameObject _player;
@@ -35,6 +35,7 @@ public class Spider : MonoBehaviour
         IsLooking = false;
         IsJumping = false;
 
+        StealthTimerSaved = _GameplayManager.twinWeaversCooldown;
         StealthTimer = StealthTimerSaved;
     }
 

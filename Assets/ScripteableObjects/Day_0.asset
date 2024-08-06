@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b13a05bd5d19a4ebe3a5e934d2f703, type: 3}
   m_Name: Day_0
   m_EditorClassIdentifier: 
-  day: 3
+  day: 0
   prideCooldown: 5
-  GluttonyDelay: 0
-  GluttonyUmbral: 0
-  GluttonyUmbral1: 0
-  GluttonyUmbral2: 0
+  GluttonyDelay: 40
+  GluttonyUmbral: 30
+  GluttonyUmbral1: 20
+  GluttonyUmbral2: 10
   greedCanSpawn: 0
+  spiderCooldown: 5
+  theatreTimer: 10
+  windowsCooldown: 5
+  windowsProbability: 10

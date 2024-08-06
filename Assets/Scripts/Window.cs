@@ -2,23 +2,41 @@ using UnityEngine;
 
 public class WindowController : MonoBehaviour
 {
+    [SerializeField] private GameObject _GameplayManager;
+
     public Light windowLight;
-    public float openDuration = 5f;
-    public float probabilityToOpen = 0.1f;
+    public float openDuration;
+    public int probabilityToOpen;
     private bool isOpen = false;
     private float openTimer = 0f;
+
+    private int triggerNumber = 0;
 
     void Start()
     {
         windowLight.enabled = false;
+        probabilityToOpen = _GameplayManager.GetComponent<GameplayManager>().WindowsProbability;
+        openDuration = _GameplayManager.GetComponent<GameplayManager>().WindowsCooldown;
     }
 
     void Update()
     {
+
+        if (!isOpen && triggerNumber == 1)
+        {
+          OpenWindow();
+        }
+        else if(!isOpen && triggerNumber != 1)
+        {
+            triggerNumber = Random.Range(0, probabilityToOpen);
+        }
+
+        /*
         if (!isOpen && Random.value < probabilityToOpen * Time.deltaTime)
         {
             OpenWindow();
         }
+        */
 
         if (isOpen)
         {

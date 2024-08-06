@@ -26,5 +26,5 @@ public class DaysInfo : ScriptableObject
 
     //windowsEnemy
     public float windowsCooldown;
-    public float windowsProbability;
+    public int windowsProbability;
 }
