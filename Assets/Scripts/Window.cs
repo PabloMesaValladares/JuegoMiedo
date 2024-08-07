@@ -23,21 +23,14 @@ public class WindowController : MonoBehaviour
 
     void Update()
     {
-        if (!isOpen && triggerNumber == 1)
-        {
-          OpenWindow();
-        }
-        else if(!isOpen && triggerNumber != 1)
+        if (!isOpen)
         {
             triggerNumber = Random.Range(0, probabilityToOpen);
+            if (triggerNumber == 1)
+            {
+                OpenWindow();
+            }
         }
-
-        /*
-        if (!isOpen && Random.value < probabilityToOpen * Time.deltaTime)
-        {
-            OpenWindow();
-        }
-        */
 
         if (isOpen)
         {
