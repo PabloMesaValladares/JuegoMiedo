@@ -19,6 +19,7 @@ MonoBehaviour:
   GluttonyUmbral1: 30
   GluttonyUmbral2: 15
   greedCanSpawn: 1
+  greedProbability: 10000
   spiderCooldown: 10
   theatreTimer: 15
   windowsCooldown: 3

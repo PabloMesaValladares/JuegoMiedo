@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DayManager : MonoBehaviour
 {
@@ -19,10 +20,11 @@ public class DayManager : MonoBehaviour
     public bool windowCanSpawn = false;
 
     [SerializeField] public List<DaysInfo> _days;
-  
+
     // Start is called before the first frame update
     void Awake()
     {
+        _GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         day = _GameManager.Day;
         DaysManagament();
     }

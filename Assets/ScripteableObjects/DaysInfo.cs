@@ -17,6 +17,7 @@ public class DaysInfo : ScriptableObject
 
     //greed
     public bool greedCanSpawn;
+    public int greedProbability;
 
     //spider
     public float spiderCooldown;

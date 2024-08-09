@@ -8,6 +8,7 @@ TagManager:
   - Hand
   - Hide
   - GameplayManager
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ public class BedEvent : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private BedEvent _thisBed;
+    [SerializeField] private GameplayManager _GameplayManager;
 
     [SerializeField] private int maxProbability;
     [SerializeField] private int triggerNumber;
@@ -19,16 +20,22 @@ public class BedEvent : MonoBehaviour
     [SerializeField] private Greed _Greed;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        _GameplayManager = GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>();
         GreedGo = false;
         isInside = false;
         _player = GameObject.FindGameObjectWithTag("Player");
+        maxProbability = _GameplayManager.GetComponent<GameplayManager>().greedProbability;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(_GameplayManager.GetComponent<GameplayManager>().GreedPlay == false)
+        {
+            gameObject.GetComponent<BedEvent>().enabled = false;
+        }
         if(isInside && GreedGo == false) 
         {
             timerOn -= 1 * Time.deltaTime;

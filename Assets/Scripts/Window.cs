@@ -17,8 +17,8 @@ public class WindowController : MonoBehaviour
     {
         windowLight.enabled = false;
         _GameplayManager = GameObject.FindGameObjectWithTag("GameplayManager");
-        probabilityToOpen = _GameplayManager.GetComponent<GameplayManager>().WindowsProbability;
-        openDuration = _GameplayManager.GetComponent<GameplayManager>().WindowsCooldown;
+        probabilityToOpen = _GameplayManager.GetComponent<GameplayManager>().windowsProbability;
+        openDuration = _GameplayManager.GetComponent<GameplayManager>().windowsCooldown;
     }
 
     void Update()

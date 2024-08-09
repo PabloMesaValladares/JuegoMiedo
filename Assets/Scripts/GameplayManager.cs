@@ -26,12 +26,12 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private GameObject Windows;
 
     //Enemies Can Spawn
-    [SerializeField] private bool PridePlay = false;
-    [SerializeField] private bool GluttonyPlay = false;
-    [SerializeField] private bool GreedPlay = false;
-    [SerializeField] private bool TwinWeaversPlay = false;
-    [SerializeField] private bool JackPlay = false;
-    [SerializeField] private bool WindowsPlay = false;
+    [SerializeField] public bool PridePlay = false;
+    [SerializeField] public bool GluttonyPlay = false;
+    [SerializeField] public bool GreedPlay = false;
+    [SerializeField] public bool TwinWeaversPlay = false;
+    [SerializeField] public bool JackPlay = false;
+    [SerializeField] public bool WindowsPlay = false;
 
     //Enemies Cooldowns
     [SerializeField] public float prideCooldown;
@@ -40,6 +40,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] public int gluttonyRoar, gluttonyRoar1, gluttonyRoar2;
     [SerializeField] public float jackCooldown;
     [SerializeField] public float twinWeaversCooldown;
+    [SerializeField] public float windowsCooldown;
 
     //Enemies Spawns
     [SerializeField] private List<GameObject> _prideSpawns;
@@ -50,11 +51,11 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int prideRandomNumberMax;
     [SerializeField] public bool prideHasSpawnded;
     [SerializeField] private bool prideIsActive;
-    [SerializeField] public int WindowsProbability;
-    [SerializeField] public float WindowsCooldown;
+    [SerializeField] public int windowsProbability;
+    [SerializeField] public int greedProbability;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Time.timeScale = 1;
         playerIsHidden = false;
@@ -65,7 +66,6 @@ public class GameplayManager : MonoBehaviour
         //Enemies Global Things
         enemiesGetOut = false;
         CheckEnemiesThatCanSpawn();
-        GluttonyShoutsSet();
 
         //Pride
         prideCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].prideCooldown;
@@ -77,7 +77,7 @@ public class GameplayManager : MonoBehaviour
         SpawningGluttony();
 
         //Greed
-        //SpawningGreed();
+        SpawningGreed();
 
         //TwinWeavers
         SpawningWeavers();
@@ -221,6 +221,7 @@ public class GameplayManager : MonoBehaviour
     {
         if(GluttonyPlay == true)
         {
+            GluttonyShoutsSet();
             Gluttony.SetActive(true);
         }
     }
@@ -230,7 +231,7 @@ public class GameplayManager : MonoBehaviour
     {
         if (GreedPlay == true)
         {
-            Greed.SetActive(true);
+            greedProbability = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].greedProbability;
         }
     }
 
@@ -239,6 +240,7 @@ public class GameplayManager : MonoBehaviour
     {
         if (JackPlay == true)
         {
+            SetJackCooldowns();
             Jack.SetActive(true);
         }
     }
@@ -253,6 +255,7 @@ public class GameplayManager : MonoBehaviour
     {
         if (TwinWeaversPlay == true)
         {
+            SetWeaversCooldowns();
             TwinWeaver.SetActive(true);
             TwinWeaver1.SetActive(true);
         }
@@ -267,8 +270,8 @@ public class GameplayManager : MonoBehaviour
     {
         if (WindowsPlay == true)
         {
-            WindowsCooldown = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].windowsCooldown;
-            WindowsProbability = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].windowsProbability;
+            windowsCooldown = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].windowsCooldown;
+            windowsProbability = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].windowsProbability;
             Windows.SetActive(true);
         }
     }
