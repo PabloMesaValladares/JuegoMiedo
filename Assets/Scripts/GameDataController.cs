@@ -5,39 +5,37 @@ using System.IO;
 
 public class GameDataController : MonoBehaviour
 {
-    public GameObject dayManager;
+    public GameObject gameManager;
     public string archivoDeGuardado;
     private GameData gameData = new GameData();
     private  void Awake() {
+        DontDestroyOnLoad(gameObject);
         archivoDeGuardado = Application.dataPath + "/gameData.json";
-        dayManager = GameObject.Find("DayManager");
+        gameManager = GameObject.Find("GameManager");
         LoadData();
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.O)) {
+        if (Input.GetKeyDown(KeyCode.X)) {
             SaveData();
-        }
-        if (Input.GetKeyDown(KeyCode.L)) {
-            LoadData();
         }
     }
 
-    private void LoadData() {
+    public void LoadData() {
         if (File.Exists(archivoDeGuardado)) {
             string json = File.ReadAllText(archivoDeGuardado);
             gameData = JsonUtility.FromJson<GameData>(json);
-            dayManager.GetComponent<DayManager>().day = gameData.day;
+            gameManager.GetComponent<GameManager>().Day = gameData.day;
             Debug.Log("Cargado");
         } else {
             Debug.LogError("No se encontro el archivo de guardado");
         }
     }
 
-    private void SaveData() {
+    public void SaveData() {
         GameData newData = new GameData()
         {
-            day = dayManager.GetComponent<DayManager>().day
+            day = gameManager.GetComponent<GameManager>().Day
         };
         string cadenaJSON = JsonUtility.ToJson(newData);
         File.WriteAllText(archivoDeGuardado, cadenaJSON);

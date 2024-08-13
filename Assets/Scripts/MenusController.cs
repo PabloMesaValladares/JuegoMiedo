@@ -8,7 +8,7 @@ public class MenusController : MonoBehaviour
 {
     public void ReturndedMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
         //SoundManager.Instance.StopSounds();
         //SoundManager.Instance.PlayeSound("MainTheme", true);
     }

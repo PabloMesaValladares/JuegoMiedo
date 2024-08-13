@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DayManager : MonoBehaviour
 {
@@ -35,8 +35,8 @@ public class DayManager : MonoBehaviour
     {
         if (day == 0)
         {
-            prideCanSpawn = true;
-            gluttonyCanSpawn = true;
+            prideCanSpawn = false;
+            gluttonyCanSpawn = false;
             greedCanSpawn = false;
             jackCanSpawn = false;
             weaverCanSpawn = false;
