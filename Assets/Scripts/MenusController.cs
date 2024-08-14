@@ -6,9 +6,9 @@ using System;
 
 public class MenusController : MonoBehaviour
 {
-    public void ReturndedMenu()
+    public void NewGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Gameplay");
         //SoundManager.Instance.StopSounds();
         //SoundManager.Instance.PlayeSound("MainTheme", true);
     }
@@ -19,34 +19,9 @@ public class MenusController : MonoBehaviour
         //SoundManager.Instance.PlayeSound("MainTheme", true);
     }
 
-    public void LevelSelect()
+    public void Menu()
     {
-        SceneManager.LoadScene("LevelSelector");
-        //SoundManager.Instance.StopSounds();
-        //SoundManager.Instance.PlayeSound("MainTheme", true);
-    }
-    public void Controls()
-    {
-        SceneManager.LoadScene("Settings");
-        //SoundManager.Instance.StopSounds();
-        //SoundManager.Instance.PlayeSound("MainTheme", true);
-    }
-
-    public void Instructions()
-    {
-        SceneManager.LoadScene("HandBook");
-        //SoundManager.Instance.StopSounds();
-        //SoundManager.Instance.PlayeSound("MainTheme", true);
-    }
-    public void Instructions2()
-    {
-        SceneManager.LoadScene("HandBook1");
-        //SoundManager.Instance.StopSounds();
-        //SoundManager.Instance.PlayeSound("MainTheme", true);
-    }
-    public void Credits()
-    {
-        SceneManager.LoadScene("Credits");
+        SceneManager.LoadScene("MainMenu");
         //SoundManager.Instance.StopSounds();
         //SoundManager.Instance.PlayeSound("MainTheme", true);
     }

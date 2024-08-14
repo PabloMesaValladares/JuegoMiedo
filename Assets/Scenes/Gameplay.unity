@@ -3595,7 +3595,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 632493561}
         m_TargetAssemblyTypeName: MenusController, Assembly-CSharp
-        m_MethodName: ReturndedMenu
+        m_MethodName: Menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
