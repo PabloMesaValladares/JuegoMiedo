@@ -12,7 +12,6 @@ public class GameDataController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         archivoDeGuardado = Application.dataPath + "/gameData.json";
         gameManager = GameObject.Find("GameManager");
-        LoadData();
     }
 
     private void Update() {
@@ -41,5 +40,19 @@ public class GameDataController : MonoBehaviour
         File.WriteAllText(archivoDeGuardado, cadenaJSON);
 
         Debug.Log("Guardado");
+    }
+
+    public void DeleteData() {
+        if (File.Exists(archivoDeGuardado)) {
+            File.Delete(archivoDeGuardado);
+            Debug.Log("Eliminado");
+        } else {
+            Debug.LogError("No se encontro el archivo de guardado");
+        }
+    }
+
+    public void ResetData() {
+        gameManager.GetComponent<GameManager>().Day = 0;
+        SaveData();
     }
 }
