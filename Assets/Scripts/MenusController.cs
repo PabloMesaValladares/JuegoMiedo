@@ -6,14 +6,24 @@ using System;
 
 public class MenusController : MonoBehaviour
 {
+    private GameDataController gameDataController;
+
+    void Start()
+    {
+        gameDataController = FindObjectOfType<GameDataController>();
+    }
+
     public void NewGame()
     {
+        gameDataController.ResetData();
+        gameDataController.LoadData();
         SceneManager.LoadScene("Gameplay");
         //SoundManager.Instance.StopSounds();
         //SoundManager.Instance.PlayeSound("MainTheme", true);
     }
     public void PlayGame()
     {
+        gameDataController.LoadData();
         SceneManager.LoadScene("Gameplay");
         //SoundManager.Instance.StopSounds();
         //SoundManager.Instance.PlayeSound("MainTheme", true);
