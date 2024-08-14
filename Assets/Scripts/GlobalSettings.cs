@@ -32,26 +32,12 @@ public class GlobalSettings : MonoBehaviour
 
     public void AdjustBrightness()
     {
-        if(colorsAdjustments.postExposure.value != 0)
-        {
-            colorsAdjustments.postExposure.value = _brightnessSlider.value;
-        }
-        else
-        {
-            colorsAdjustments.postExposure.value = 0.05f;
-        }
+        colorsAdjustments.postExposure.value = _brightnessSlider.value;
     }
 
     public void AdjustContrast()
     {
-        if (colorsAdjustments.contrast.value != 0)
-        {
-            colorsAdjustments.contrast.value = _brightnessSlider.value;
-        }
-        else
-        {
-            colorsAdjustments.contrast.value = 0;
-        }
+        colorsAdjustments.contrast.value = _contrastSlider.value;
     }
 
     public void ChangeQuality(int quality)
