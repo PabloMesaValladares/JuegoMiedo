@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class GlobalSettings : MonoBehaviour
