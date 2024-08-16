@@ -5,6 +5,9 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class HeadBobbing : MonoBehaviour
 {
+
+    [SerializeField] private GameManager _GameManager;
+
     [Range(0.00f, 1f)]
     public float amount = 0.002f;
     [Range(0.1f, 100f)]
@@ -24,8 +27,15 @@ public class HeadBobbing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         startPos = transform.localPosition;
         startRot = transform.localRotation;
+
+        if(_GameManager.Bobhead == false)
+        {
+            gameObject.GetComponent<HeadBobbing>().enabled = false;
+        }
     }
 
     // Update is called once per frame

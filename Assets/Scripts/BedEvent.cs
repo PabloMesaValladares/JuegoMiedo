@@ -27,15 +27,16 @@ public class BedEvent : MonoBehaviour
         isInside = false;
         _player = GameObject.FindGameObjectWithTag("Player");
         maxProbability = _GameplayManager.GetComponent<GameplayManager>().greedProbability;
+
+        if (_GameplayManager.GetComponent<GameplayManager>().GreedPlay == false)
+        {
+            gameObject.GetComponent<BedEvent>().enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_GameplayManager.GetComponent<GameplayManager>().GreedPlay == false)
-        {
-            gameObject.GetComponent<BedEvent>().enabled = false;
-        }
         if(isInside && GreedGo == false) 
         {
             timerOn -= 1 * Time.deltaTime;

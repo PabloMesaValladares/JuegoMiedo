@@ -10,18 +10,23 @@ using UnityEngine.UI;
 
 public class GlobalSettings : MonoBehaviour
 {
+
+    [SerializeField] private GameManager _GameManager;
+
     public Slider _brightnessSlider;
     public Slider _contrastSlider;
     public Toggle _bobheadToggle;
 
     public Volume _settingsProfile;
 
-    private ColorAdjustments colorsAdjustments;
+    [SerializeField] private ColorAdjustments colorsAdjustments;
 
     public RenderPipelineAsset[] qualityLevels;
 
-    void Start()
+    void Awake()
     {
+        _GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         _settingsProfile = FindObjectOfType<Volume>();
 
         if( _settingsProfile != null )
@@ -55,20 +60,18 @@ public class GlobalSettings : MonoBehaviour
 
     public void ChangeVolumes()
     {
-        //volumes
+        //musica, sonidos
     }
 
     public void bobheadEnable()
     {
         if(_bobheadToggle == true)
         {
-
+            _GameManager.Bobhead = true;
         }
         else if(_bobheadToggle == false)
         {
-
+            _GameManager.Bobhead = false;
         }
     }
-
-    //contraste, graficos, volumen, pantalla completa, bobhead, 
 }

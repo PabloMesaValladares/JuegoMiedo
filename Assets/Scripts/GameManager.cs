@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int Day;
+    public bool Bobhead;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,4 +20,5 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
 }
