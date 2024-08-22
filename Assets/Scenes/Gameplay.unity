@@ -5087,6 +5087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Day: 1
+  Bobhead: 0
 --- !u!4 &851816957
 Transform:
   m_ObjectHideFlags: 0
@@ -9479,7 +9480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1433956516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9487,13 +9488,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433956515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f1e2a61078019e4b8544ee48672e1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   archivoDeGuardado: 
+  gameData:
+    day: 0
+    quality: 0
+    brightness: 0
+    contrast: 0
+    screenMode: 0
+    bobhead: 0
 --- !u!4 &1433956517
 Transform:
   m_ObjectHideFlags: 0
@@ -11499,6 +11507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317f84bf4557e954ba927cb224e813d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _GameManager: {fileID: 0}
   amount: 0.005
   frequency: 8
   smooth: 10

@@ -7,4 +7,10 @@ using UnityEngine;
 public class GameData
 {
     public int day;
+    public int quality;
+    public float brightness;
+    public float contrast;
+    public int screenMode;
+    public bool bobhead;
+    
 }
