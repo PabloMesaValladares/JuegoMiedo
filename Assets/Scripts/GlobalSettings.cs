@@ -40,6 +40,7 @@ public class GlobalSettings : MonoBehaviour
     {
         // Load settings
         LoadSettings();
+        gameObject.SetActive(false);
     }
 
     public void AdjustBrightness()
