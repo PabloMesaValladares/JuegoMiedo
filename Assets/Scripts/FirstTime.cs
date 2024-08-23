@@ -5,8 +5,8 @@ using UnityEngine;
 public class FirstTime : MonoBehaviour
 {
     [SerializeField] private GameManager _GameManager;
-    [SerializeField] private GameObject _FirtsPanel;
-    [SerializeField] private GameObject _NormalPanel;
+    [SerializeField] private GameObject _ContinueButton;
+    [SerializeField] private GameObject _FakeContinueButton;
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +15,8 @@ public class FirstTime : MonoBehaviour
 
         if(_GameManager.Day != 0)
         {
-            _FirtsPanel.SetActive(false);
-            _NormalPanel.SetActive(true);
+            _FakeContinueButton.SetActive(false);
+            _ContinueButton.SetActive(true);
         }
     }
 
