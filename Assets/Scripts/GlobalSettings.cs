@@ -14,6 +14,9 @@ public class GlobalSettings : MonoBehaviour
 
     public Slider _brightnessSlider;
     public Slider _contrastSlider;
+
+    public Slider _musicSlider;
+    public Slider _sfxSlider;
     public Toggle _bobheadToggle;
 
     public Volume _settingsProfile;
@@ -74,9 +77,28 @@ public class GlobalSettings : MonoBehaviour
         gameDataController.SaveData();
     }
 
-    public void ChangeVolumes()
+    public void ToggleMusic()
     {
-        //musica, sonidos
+        AudioManager.instance.ToggleMusic();
+    }
+
+    public void ToggleSFX()
+    {
+        AudioManager.instance.ToggleSFX();
+    }
+
+    public void MusicVolume()
+    {
+        AudioManager.instance.SetMusicVolume(_musicSlider.value);
+        gameDataController.gameData.musicVolume = _musicSlider.value;
+        gameDataController.SaveData();
+    }
+
+    public void SFXVolume()
+    {
+        AudioManager.instance.SetSFXVolume(_sfxSlider.value);
+        gameDataController.gameData.sfxVolume = _sfxSlider.value;
+        gameDataController.SaveData();
     }
 
     public void bobheadEnable()
@@ -98,6 +120,8 @@ public class GlobalSettings : MonoBehaviour
         _brightnessSlider.value = gameDataController.gameData.brightness;
         _contrastSlider.value = gameDataController.gameData.contrast;
         _bobheadToggle.isOn = gameDataController.gameData.bobhead;
+        _musicSlider.value = gameDataController.gameData.musicVolume;
+        _sfxSlider.value = gameDataController.gameData.sfxVolume;
 
         colorsAdjustments.postExposure.value = gameDataController.gameData.brightness;
         colorsAdjustments.contrast.value = gameDataController.gameData.contrast;

@@ -12,5 +12,9 @@ public class GameData
     public float contrast;
     public int screenMode;
     public bool bobhead;
+
+    public float musicVolume;
+
+    public float sfxVolume;
     
 }

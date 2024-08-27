@@ -69,6 +69,8 @@ public class GameDataController : MonoBehaviour
             globalSettings._brightnessSlider.value = gameData.brightness;
             globalSettings._contrastSlider.value = gameData.contrast;
             globalSettings._bobheadToggle.isOn = gameData.bobhead;
+            globalSettings._musicSlider.value = gameData.musicVolume;
+            globalSettings._sfxSlider.value = gameData.sfxVolume;
 
             globalSettings.colorsAdjustments.postExposure.value = gameData.brightness;
             globalSettings.colorsAdjustments.contrast.value = gameData.contrast;

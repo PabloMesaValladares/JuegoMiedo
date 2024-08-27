@@ -846,7 +846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music:
-  - name: Prueba
+  - name: Theme
     clip: {fileID: 8300000, guid: 5970eee3a6c8fb2429984108b243dd74, type: 3}
   sfx: []
   musicSource: {fileID: 1051819068}
@@ -2785,6 +2785,8 @@ MonoBehaviour:
   _GameManager: {fileID: 0}
   _brightnessSlider: {fileID: 1712436993}
   _contrastSlider: {fileID: 1305789459}
+  _musicSlider: {fileID: 730714769}
+  _sfxSlider: {fileID: 1667329750}
   _bobheadToggle: {fileID: 1668984362}
   _settingsProfile: {fileID: 929178402}
   colorsAdjustments: {fileID: 0}
@@ -3465,13 +3467,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 696319122}
   m_HandleRect: {fileID: 809086605}
   m_Direction: 0
-  m_MinValue: -5
-  m_MaxValue: 5
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 648735505}
+        m_TargetAssemblyTypeName: GlobalSettings, Assembly-CSharp
+        m_MethodName: MusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &735452698
 GameObject:
   m_ObjectHideFlags: 0
@@ -6624,6 +6638,8 @@ MonoBehaviour:
     contrast: 0
     screenMode: 0
     bobhead: 0
+    musicVolume: 0
+    sfxVolume: 0
 --- !u!4 &1278083018
 Transform:
   m_ObjectHideFlags: 0
@@ -8485,13 +8501,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1433460596}
   m_HandleRect: {fileID: 706044654}
   m_Direction: 0
-  m_MinValue: -5
-  m_MaxValue: 5
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 648735505}
+        m_TargetAssemblyTypeName: GlobalSettings, Assembly-CSharp
+        m_MethodName: SFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1668984360
 GameObject:
   m_ObjectHideFlags: 0
