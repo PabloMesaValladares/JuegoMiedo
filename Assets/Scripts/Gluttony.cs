@@ -7,19 +7,23 @@ public class Gluttony : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _AwakenGluttony;
     [SerializeField] private GameObject _GameplayManager;
-    private InventorySystem _Inventory;
+    [SerializeField] private GameObject _Player;
+    //private InventorySystem _Inventory;
 
     [SerializeField] private bool umbralCheck, umbralCheck1, umbralCheck2;
     [SerializeField] private float timerOn;
     [SerializeField] private float delay;
     [SerializeField] private int umbral, umbral1, umbral2;
+    [SerializeField] private bool stage0, stage1, stage2, stage3;
+    [SerializeField] private int triggerNumber;
+    [SerializeField] private List<GameObject> _GluttonySpawnPoints;
 
     // Start is called before the first frame update
     void Awake()
     {
         _GameplayManager = GameObject.FindGameObjectWithTag("GameplayManager");
         _player = GameObject.FindGameObjectWithTag("Player");
-        _Inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
+        //_Inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
 
         delay = _GameplayManager.GetComponent<GameplayManager>().gluttonyCooldown;
         umbral = _GameplayManager.GetComponent<GameplayManager>().gluttonyRoar;
@@ -68,18 +72,42 @@ public class Gluttony : MonoBehaviour
         umbralCheck2 = false;
     }
 
+    public void SpawnInRandomPlace()
+    {
+        if (stage0 == true)
+        {
+            triggerNumber = Random.Range(0,2); //0,1,2 (Segundo Piso)
+        }
+        if (stage1 == true)
+        {
+            triggerNumber = Random.Range(0,5); //0,1,2,3,4,5 (Segundo y Primer Piso)
+        }
+        if (stage2 == true)
+        {
+            triggerNumber = Random.Range(0,6); //0,1,2,3,4,5,6 (Segundo y Primer Piso y Atico)
+        }
+        if (stage3 == true)
+        {
+            triggerNumber = Random.Range(0,8); //0,1,2,3,4,5,6,7,8 (Segundo y Primer Piso, Atico y Sotano)
+        }
+
+        gameObject.transform.position = _GluttonySpawnPoints[triggerNumber].transform.position;
+
+    }
+    
     public void FeedMe()
     {
-        if(_Inventory.CheckObjects(0) == true)
+        if(_GameplayManager.GetComponent<GameplayManager>().gluttonyDessertPicked == true)
         {
-            _Inventory.RemoveObjects(0);
             Reset();
+            _GameplayManager.GetComponent<GameplayManager>().gluttonyHasSpawnded = false;
+            gameObject.SetActive(false);
             Debug.Log("Me alimentaste");
         }
 
         //No tienes carne
     }
-
+    
     public void TriggeringTheEvent()
     {
         gameObject.SetActive(false);

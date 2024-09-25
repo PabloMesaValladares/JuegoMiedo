@@ -18,6 +18,7 @@ MonoBehaviour:
   GluttonyUmbral: 30
   GluttonyUmbral1: 20
   GluttonyUmbral2: 10
+  DessertSpawnInt: 0
   greedCanSpawn: 0
   greedProbability: 0
   spiderCooldown: 5

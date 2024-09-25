@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public class GameplayManager : MonoBehaviour
@@ -37,6 +38,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] public float prideCooldown;
     [SerializeField] public float prideCooldownSaved;
     [SerializeField] public float gluttonyCooldown;
+    [SerializeField] public float gluttonyCooldownSaved;
     [SerializeField] public int gluttonyRoar, gluttonyRoar1, gluttonyRoar2;
     [SerializeField] public float jackCooldown;
     [SerializeField] public float twinWeaversCooldown;
@@ -51,6 +53,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int prideRandomNumberMax;
     [SerializeField] public bool prideHasSpawnded;
     [SerializeField] private bool prideIsActive;
+    [SerializeField] public bool gluttonyHasSpawnded;
+    [SerializeField] public bool gluttonyDessertPicked;
+    [SerializeField] private GameObject Dessert;
+    [SerializeField] private int DessertSpawnNumber;
     [SerializeField] public int windowsProbability;
     [SerializeField] public int greedProbability;
 
@@ -74,6 +80,10 @@ public class GameplayManager : MonoBehaviour
         prideRandomNumber = 0;
 
         //Gluttony
+        gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].gluttonyCooldown;
+        gluttonyCooldown = gluttonyCooldownSaved;
+        gluttonyHasSpawnded = false;
+        GluttonyShoutsSet();
         SpawningGluttony();
 
         //Greed
@@ -95,6 +105,7 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         SpawningPride();
+        SpawningGluttony();
     }
 
     public void PlayerHidden()
@@ -215,14 +226,24 @@ public class GameplayManager : MonoBehaviour
         gluttonyRoar = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyUmbral;
         gluttonyRoar1 = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyUmbral1;
         gluttonyRoar2 = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyUmbral2;
+        DessertSpawnNumber = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].DessertSpawnInt;
     }
 
     public void SpawningGluttony()
     {
-        if(GluttonyPlay == true)
+        if(!gluttonyHasSpawnded && GluttonyPlay == true)
         {
-            GluttonyShoutsSet();
-            Gluttony.SetActive(true);
+            gluttonyCooldown -= 1 * Time.deltaTime;
+
+            if(gluttonyCooldown <= 0)
+            {
+                Gluttony.GetComponent<Gluttony>().SpawnInRandomPlace();
+                Gluttony.SetActive(true);
+                Dessert.GetComponent<DessertScript>().SpawnTheDessert(DessertSpawnNumber);
+                gluttonyDessertPicked = false;
+                gluttonyHasSpawnded = true;
+                gluttonyCooldown = gluttonyCooldownSaved;
+            }
         }
     }
 
