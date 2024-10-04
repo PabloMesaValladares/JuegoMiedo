@@ -22,6 +22,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] public float NightGameTimerSaved;
     [SerializeField] public float InitialTimePeace;
     [SerializeField] public GameObject StartNightObject;
+    [SerializeField] private bool GameHasStarted = false;
 
     //Enemies
     [SerializeField] private GameObject Pride;
@@ -107,15 +108,18 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawningPride();
-        SpawningGluttony();
-
-        NightGameTimer -= 1 * Time.deltaTime;
-
-        if (NightGameTimer <= 0)
+        if(GameHasStarted == true)
         {
-            NightGameTimer = NightGameTimerSaved;
-            StartCoroutine(StartNightObject.GetComponent<StartNight>().NightIsEnding());
+            SpawningPride();
+            SpawningGluttony();
+
+            NightGameTimer -= 1 * Time.deltaTime;
+
+            if (NightGameTimer <= 0)
+            {
+                NightGameTimer = NightGameTimerSaved;
+                StartCoroutine(StartNightObject.GetComponent<StartNight>().NightIsEnding());
+            }
         }
     }
 
@@ -335,21 +339,54 @@ public class GameplayManager : MonoBehaviour
         //Greed
         SpawningGreed();
 
-        //TwinWeavers
-        SpawningWeavers();
-
-        //Jack
-        SpawningJack();
+        //Knights
+        //SpawningKnights();
 
         //Windows
         SpawningWindows();
 
+        //TwinWeavers
+        SpawningWeavers();
+
+        //Sloth
+        //SpawningSloth();
+
         NightGameTimer = NightGameTimerSaved;
-        //reset todos los enemigos
+        GameHasStarted = true;
     }
 
     public void FinishGame()
     {
+        GameHasStarted = false;
+
+        //Pride
+        Pride.GetComponent<Pride>().Reset();
+        Pride.SetActive(false);
+
+        //Gluttony
+        Gluttony.GetComponent<Gluttony>().Reset();
+        Gluttony.SetActive(false);
+
+        //Greed
+        //Greed.GetComponent<Greed>().Reset();
+        Greed.SetActive(false);
+
+        //Knights
+        //Knights.GetComponent<Knights>().Reset();
+        //Knights.SetActive(false);
+
+        //Windows
+        //Windows.GetComponent<Window>().Reset();
+        Windows.SetActive(false);
+
+        //TwinWeavers
+        TwinWeaver.GetComponent<Weaver>().Reset();
+        TwinWeaver.SetActive(false);
+        TwinWeaver1.GetComponent<Weaver>().Reset();
+        TwinWeaver1.SetActive(false);
+
+        //Sloth
+        //De Momento nada
 
     }
 }
