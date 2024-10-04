@@ -18,6 +18,11 @@ public class GameplayManager : MonoBehaviour
 
     public UnityEvent startMinigame;
 
+    [SerializeField] public float NightGameTimer;
+    [SerializeField] public float NightGameTimerSaved;
+    [SerializeField] public float InitialTimePeace;
+    [SerializeField] public GameObject StartNightObject;
+
     //Enemies
     [SerializeField] private GameObject Pride;
     [SerializeField] private GameObject Gluttony;
@@ -48,7 +53,6 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private List<GameObject> _prideSpawns;
 
     //Enemies Other Things
-    [SerializeField] private bool enemiesGetOut;
     [SerializeField] private int prideRandomNumber;
     [SerializeField] private int prideRandomNumberMax;
     [SerializeField] public bool prideHasSpawnded;
@@ -61,23 +65,21 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] public int greedProbability;
 
     // Start is called before the first frame update
+    /*
     void Awake()
     {
         //Time.timeScale = 1;
         playerIsHidden = false;
         playerCantHidden = false;
         lanternActivated = false;
-        prideRandomNumber = 0;
 
         //Enemies Global Things
-        enemiesGetOut = false;
         CheckEnemiesThatCanSpawn();
 
         //Pride
         prideCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].prideCooldown;
         prideCooldown = prideCooldownSaved;
         prideHasSpawnded = false;
-        prideRandomNumber = 0;
 
         //Gluttony
         gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].gluttonyCooldown;
@@ -98,14 +100,23 @@ public class GameplayManager : MonoBehaviour
         //Windows
         SpawningWindows();
 
+        NightGameTimer = NightGameTimerSaved;
 
     }
-
+    */
     // Update is called once per frame
     void Update()
     {
         SpawningPride();
         SpawningGluttony();
+
+        NightGameTimer -= 1 * Time.deltaTime;
+
+        if (NightGameTimer <= 0)
+        {
+            NightGameTimer = NightGameTimerSaved;
+            StartCoroutine(StartNightObject.GetComponent<StartNight>().NightIsEnding());
+        }
     }
 
     public void PlayerHidden()
@@ -295,5 +306,50 @@ public class GameplayManager : MonoBehaviour
             windowsProbability = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].windowsProbability;
             Windows.SetActive(true);
         }
+    }
+
+    //GLOBAL RESET
+
+    public void StartGame()
+    {
+        playerIsHidden = false;
+        playerCantHidden = false;
+        lanternActivated = false;
+
+        //Enemies Global Things
+        InitialTimePeace = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].timePeacefully;
+        CheckEnemiesThatCanSpawn();
+
+        //Pride
+        prideCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].prideCooldown;
+        prideCooldown = prideCooldownSaved + InitialTimePeace;
+        prideHasSpawnded = false;
+
+        //Gluttony
+        gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].gluttonyCooldown;
+        gluttonyCooldown = gluttonyCooldownSaved + InitialTimePeace;
+        gluttonyHasSpawnded = false;
+        GluttonyShoutsSet();
+        SpawningGluttony();
+
+        //Greed
+        SpawningGreed();
+
+        //TwinWeavers
+        SpawningWeavers();
+
+        //Jack
+        SpawningJack();
+
+        //Windows
+        SpawningWindows();
+
+        NightGameTimer = NightGameTimerSaved;
+        //reset todos los enemigos
+    }
+
+    public void FinishGame()
+    {
+
     }
 }

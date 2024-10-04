@@ -7,6 +7,7 @@ public class DaysInfo : ScriptableObject
 {
     //cosas globales
     public int day;
+    public float timePeacefully;
 
     //pride
     public float prideCooldown;

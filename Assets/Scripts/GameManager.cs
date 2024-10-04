@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int Day;
+    public int maxDay;
     public bool Bobhead;
 
     // Start is called before the first frame update
