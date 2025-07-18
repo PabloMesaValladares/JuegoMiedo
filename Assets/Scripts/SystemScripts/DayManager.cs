@@ -35,8 +35,8 @@ public class DayManager : MonoBehaviour
     {
         if (day == 0)
         {
-            prideCanSpawn = true;
-            gluttonyCanSpawn = false;
+            prideCanSpawn = false;
+            gluttonyCanSpawn = true;
             greedCanSpawn = false;
             jackCanSpawn = false;
             weaverCanSpawn = false;

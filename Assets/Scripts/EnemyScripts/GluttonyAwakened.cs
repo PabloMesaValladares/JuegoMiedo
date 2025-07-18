@@ -12,10 +12,11 @@ public class GluttonyAwakened : MonoBehaviour
     public LayerMask isGrounded;
 
     [SerializeField] private float Speed;
-    [SerializeField] private float SpeedZero;
-
     [SerializeField] private RaycastHit _RaycastPlayer;
     [SerializeField] private float raycastRange;
+
+    [SerializeField] private Animator _anim;
+    [SerializeField] private bool Shout;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,13 +24,19 @@ public class GluttonyAwakened : MonoBehaviour
         enemy = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
         enemy.GetComponent<NavMeshAgent>().speed = Speed;
+
+        Shout = false;
+
+        TriggeringTheEvent();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Attacking();
-        //PlayerIsLookingMe();
+        if (Shout == true)  //Despues de acabar la animacion del State 1, pondra el Bool Shout en True y ira a por el jugador.
+        {
+            Attacking();
+        }
     }
 
     private void Attacking()
@@ -46,33 +53,6 @@ public class GluttonyAwakened : MonoBehaviour
             Jumpscare();
         }
     }
-    /*
-    public void PlayerIsLookingMe()
-    {
-        enemy.GetComponent<NavMeshAgent>().speed = SpeedZero;
-    }
-
-    public void PlayerIsDoesntLookingMe()
-    {
-        enemy.GetComponent<NavMeshAgent>().speed = Speed;
-    }
-    */
-    public void OnTriggerStay(Collider other)
-    {
-        if(_GameplayManager.GetComponent<GameplayManager>().LanternActivated() == true)
-        {
-            enemy.GetComponent<NavMeshAgent>().speed = SpeedZero;
-        }
-        else if(_GameplayManager.GetComponent<GameplayManager>().LanternActivated() == false)
-        {
-            enemy.GetComponent<NavMeshAgent>().speed = Speed;
-        }
-    }
-
-    public void OnTriggerExit(Collider other) 
-    {
-        enemy.GetComponent<NavMeshAgent>().speed = Speed;
-    }
 
     private void Jumpscare()
     {
@@ -80,8 +60,14 @@ public class GluttonyAwakened : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void TriggeringTheEvent()
+    {
+        //llamara a un nuevo efecto global que apagara las luces de la casa entera, impedira esconderse en escondites y cargar la bateria.
+        _anim.SetInteger("State", 1);
+    }
+
     public void Reset()
     {
-
+        //Como solo spawnea 1 unica vez, y si o si acabara matando al jugador, no neccesita un Reset.
     }
 }

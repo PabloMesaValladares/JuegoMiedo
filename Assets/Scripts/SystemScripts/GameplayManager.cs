@@ -45,6 +45,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] public float prideCooldownSaved;
     [SerializeField] public float gluttonyCooldown;
     [SerializeField] public float gluttonyCooldownSaved;
+    [SerializeField] public float gluttonyDelay;
     [SerializeField] public int gluttonyRoar, gluttonyRoar1, gluttonyRoar2;
     [SerializeField] public float jackCooldown;
     [SerializeField] public float twinWeaversCooldown;
@@ -60,19 +61,22 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private bool prideIsActive;
     [SerializeField] public bool gluttonyHasSpawnded;
     [SerializeField] public bool gluttonyDessertPicked;
+    [SerializeField] public int gluttonyStage;
     [SerializeField] private GameObject Dessert;
     [SerializeField] private int DessertSpawnNumber;
     [SerializeField] public int windowsProbability;
     [SerializeField] public int greedProbability;
 
     // Start is called before the first frame update
-    /*
+    
     void Awake()
     {
-        //Time.timeScale = 1;
+        /*
+        Time.timeScale = 1;
         playerIsHidden = false;
         playerCantHidden = false;
         lanternActivated = false;
+        NightGameTimer = NightGameTimerSaved;
 
         //Enemies Global Things
         CheckEnemiesThatCanSpawn();
@@ -83,7 +87,7 @@ public class GameplayManager : MonoBehaviour
         prideHasSpawnded = false;
 
         //Gluttony
-        gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].gluttonyCooldown;
+        gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyCooldown;
         gluttonyCooldown = gluttonyCooldownSaved;
         gluttonyHasSpawnded = false;
         GluttonyShoutsSet();
@@ -101,10 +105,13 @@ public class GameplayManager : MonoBehaviour
         //Windows
         SpawningWindows();
 
-        NightGameTimer = NightGameTimerSaved;
+        GameHasStarted = true;
+        */
+
+        StartGame();
 
     }
-    */
+    
     // Update is called once per frame
     void Update()
     {
@@ -237,11 +244,13 @@ public class GameplayManager : MonoBehaviour
     //Gluttony
     public void GluttonyShoutsSet()
     {
-        gluttonyCooldown = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyDelay;
+        gluttonyCooldown = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyCooldown;
+        gluttonyDelay = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyDelay;
         gluttonyRoar = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyUmbral;
         gluttonyRoar1 = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyUmbral1;
         gluttonyRoar2 = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyUmbral2;
         DessertSpawnNumber = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].DessertSpawnInt;
+        gluttonyStage = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyStage;
     }
 
     public void SpawningGluttony()
@@ -316,22 +325,24 @@ public class GameplayManager : MonoBehaviour
 
     public void StartGame()
     {
+        
+        Time.timeScale = 1;
         playerIsHidden = false;
         playerCantHidden = false;
         lanternActivated = false;
+        NightGameTimer = NightGameTimerSaved;
 
         //Enemies Global Things
-        InitialTimePeace = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].timePeacefully;
         CheckEnemiesThatCanSpawn();
 
         //Pride
         prideCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].prideCooldown;
-        prideCooldown = prideCooldownSaved + InitialTimePeace;
+        prideCooldown = prideCooldownSaved;
         prideHasSpawnded = false;
 
         //Gluttony
-        gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].gluttonyCooldown;
-        gluttonyCooldown = gluttonyCooldownSaved + InitialTimePeace;
+        gluttonyCooldownSaved = _DayManager.GetComponent<DayManager>()._days[_DayManager.GetComponent<DayManager>().day].GluttonyCooldown;
+        gluttonyCooldown = gluttonyCooldownSaved;
         gluttonyHasSpawnded = false;
         GluttonyShoutsSet();
         SpawningGluttony();
@@ -339,20 +350,16 @@ public class GameplayManager : MonoBehaviour
         //Greed
         SpawningGreed();
 
-        //Knights
-        //SpawningKnights();
+        //TwinWeavers
+        SpawningWeavers();
+
+        //Jack
+        SpawningJack();
 
         //Windows
         SpawningWindows();
 
-        //TwinWeavers
-        SpawningWeavers();
-
-        //Sloth
-        //SpawningSloth();
-
-        NightGameTimer = NightGameTimerSaved;
-        GameHasStarted = true;
+        GameHasStarted = true;    
     }
 
     public void FinishGame()

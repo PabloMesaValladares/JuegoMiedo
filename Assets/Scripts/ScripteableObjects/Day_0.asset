@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Day_0
   m_EditorClassIdentifier: 
   day: 0
-  prideCooldown: 5
-  GluttonyDelay: 40
-  GluttonyUmbral: 30
-  GluttonyUmbral1: 20
-  GluttonyUmbral2: 10
-  DessertSpawnInt: 0
+  timePeacefully: 5
+  prideCooldown: 0
+  GluttonyCooldown: 5
+  GluttonyDelay: 100
+  GluttonyUmbral: 75
+  GluttonyUmbral1: 50
+  GluttonyUmbral2: 25
+  DessertSpawnInt: 1
+  GluttonyStage: 0
   greedCanSpawn: 0
   greedProbability: 0
-  spiderCooldown: 5
-  theatreTimer: 10
-  windowsCooldown: 5
-  windowsProbability: 10
+  spiderCooldown: 0
+  theatreTimer: 0
+  windowsCooldown: 0
+  windowsProbability: 0

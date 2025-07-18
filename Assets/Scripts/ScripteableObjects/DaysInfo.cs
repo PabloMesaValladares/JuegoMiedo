@@ -13,10 +13,11 @@ public class DaysInfo : ScriptableObject
     public float prideCooldown;
 
     //gluttony
-    public float gluttonyCooldown;
+    public float GluttonyCooldown;
     public float GluttonyDelay;
     public int GluttonyUmbral, GluttonyUmbral1, GluttonyUmbral2;
     public int DessertSpawnInt;
+    public int GluttonyStage;
 
     //greed
     public bool greedCanSpawn;
